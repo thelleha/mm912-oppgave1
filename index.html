@@ -30,23 +30,26 @@
         gjettKnapp.addEventListener("click", sjekkGjett);
         document.body.appendChild(gjettKnapp);
 
-        // Opprett et resultatelement
-        const resultat = document.createElement("p");
-        document.body.appendChild(resultat);
+        // Opprett en resultatliste
+        const resultatListe = document.createElement("ul");
+        document.body.appendChild(resultatListe);
 
         function sjekkGjett() {
             forsok++;
             const gjettetTall = parseInt(gjettetTallInput.value);
+            const resultatElement = document.createElement("li");
 
             if (gjettetTall === riktigTall) {
-                resultat.textContent = `Du gjettet ${gjettetTall}, det er riktig!!! Du brukte ${forsok} forsøk.`;
+                resultatElement.textContent = `Du gjettet ${gjettetTall}, det er riktig!!! Du brukte ${forsok} forsøk.`;
+                gjettKnapp.disabled = true; // Deaktiver knappen etter riktig svar
             } else if (gjettetTall < riktigTall) {
-                resultat.textContent = `Du gjettet ${gjettetTall}, det er for lavt. Prøv igjen.`;
+                resultatElement.textContent = `Du gjettet ${gjettetTall}, det er for lavt. Prøv igjen.`;
             } else {
-                resultat.textContent = `Du gjettet ${gjettetTall}, det er for høyt. Prøv igjen.`;
+                resultatElement.textContent = `Du gjettet ${gjettetTall}, det er for høyt. Prøv igjen.`;
             }
+
+            resultatListe.appendChild(resultatElement);
         }
     </script>
 </body>
-
 </html>
