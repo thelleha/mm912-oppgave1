@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave</title>
+</head>
+
+<body>
+    <script>
+        // Generer et tilfeldig tall mellom 1 og 100
+        const riktigTall = Math.floor(Math.random() * 100) + 1;
+        let forsok = 0;
+
+        // Opprett en meldingselement
+        const melding = document.createElement("p");
+        melding.textContent = "Jeg har valgt et tall mellom 1 og 100, gjett mitt tall";
+        document.body.appendChild(melding);
+
+        // Opprett en tekstboks for gjettet
+        const gjettetTallInput = document.createElement("input");
+        gjettetTallInput.type = "number";
+        gjettetTallInput.placeholder = "Skriv inn ditt gjett";
+        document.body.appendChild(gjettetTallInput);
+
+        // Opprett en knapp for å gjette
+        const gjettKnapp = document.createElement("button");
+        gjettKnapp.textContent = "Gjett";
+        gjettKnapp.addEventListener("click", sjekkGjett);
+        document.body.appendChild(gjettKnapp);
+
+        // Opprett et resultatelement
+        const resultat = document.createElement("p");
+        document.body.appendChild(resultat);
+
+        function sjekkGjett() {
+            forsok++;
+            const gjettetTall = parseInt(gjettetTallInput.value);
+
+            if (gjettetTall === riktigTall) {
+                resultat.textContent = `Du gjettet ${gjettetTall}, det er riktig!!! Du brukte ${forsok} forsøk.`;
+            } else if (gjettetTall < riktigTall) {
+                resultat.textContent = `Du gjettet ${gjettetTall}, det er for lavt. Prøv igjen.`;
+            } else {
+                resultat.textContent = `Du gjettet ${gjettetTall}, det er for høyt. Prøv igjen.`;
+            }
+        }
+    </script>
+</body>
+
+</html>
